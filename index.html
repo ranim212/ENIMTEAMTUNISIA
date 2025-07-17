@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENIM Team Tunisia - Shell Eco-marathon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #ffffff;
+            --accent-color: #333333;
+            --text-color: #1a1a1a;
+            --background-color: #ffffff;
+            --border-color: #e5e7eb;
+            --highlight-color: #f8fafc;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-heavy: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Elegant Header above navigation */
+        header {
+            padding: 3rem 0 2rem 0;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            text-align: center;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .header-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: var(--shadow-medium);
+            background: var(--secondary-color);
+            padding: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .header-logo:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .header-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .header-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            font-weight: 400;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* Clean Navigation without purple tiles */
+        nav {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* Enhanced Hero Section with better readability */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--background-color) 0%, var(--highlight-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            animation: slideInFromLeft 1.2s ease-out;
+        }
+
+        .hero-text h2 {
+            font-size: 2.75rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--primary-color);
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .hero-text strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .hero-image {
+            text-align: center;
+            animation: slideInFromRight 1.2s ease-out;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow-heavy);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Enhanced Section Styling */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        /* Enhanced Achievements Section */
+        .achievements {
+            padding: 6rem 0;
+            background: var(--background-color);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .achievement-card {
+            background: var(--highlight-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-heavy);
+            border-color: transparent;
+        }
+
+        .achievement-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .achievement-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .achievement-card p {
+            color: rgba(26, 26, 26, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Enhanced Team Section */
+        .our-team {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--highlight-color) 0%, var(--background-color) 100%);
+        }
+
+        .team-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 4rem;
+            background: var(--secondary-color);
+            border-radius: 16px;
+            padding: 0.75rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border-color);
+        }
+
+        .team-tab {
+            flex: 1;
+            padding: 1rem 2rem;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--accent-color);
+            font-family: inherit;
+        }
+
+        .team-tab.active {
+            background: var(--gradient-primary);
+            color: var(--secondary-color);
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
+        }
+
+        .team-tab:hover:not(.active) {
+            background: var(--highlight-color);
+            transform: translateY(-1px);
+        }
+
+        .team-content {
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .team-content.active {
+            display: block;
+        }
+
+        /* Enhanced Team Grids */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .electrical-team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            justify-items: center;
+        }
+
+        .member-card {
+            background: var(--secondary-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease-out;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .electrical-member-card {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #f8fafc 100%);
+            padding: 2rem;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease-out;
+            width: 100%;
+            max-width: 280px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+
+        .electrical-member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .member-card:hover, .electrical-member-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .electrical-member-card:hover {
+            background: linear-gradient(135deg, #ffffff 0%, var(--highlight-color) 100%);
+        }
+
+        .member-photo, .electrical-member-photo {
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border: 4px solid var(--border-color);
+        }
+
+        .electrical-member-photo {
+            width: 100px;
+            height: 100px;
+            border: 3px solid #667eea;
+        }
+
+        .member-card:hover .member-photo, .electrical-member-card:hover .electrical-member-photo {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .electrical-member-card:hover .electrical-member-photo {
+            border-color: #764ba2;
+        }
+
+        .member-name, .electrical-member-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+        }
+
+        .electrical-member-name {
+            font-size: 1.125rem;
+            color: #333;
+        }
+
+        .member-role, .electrical-member-role {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .member-role {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        .electrical-member-role {
+            color: #667eea;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Enhanced Timeline */
+        .timeline {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--highlight-color) 0%, var(--background-color) 100%);
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: var(--secondary-color);
+            padding: 2.5rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            border-left: 5px solid;
+            border-image: var(--gradient-primary) 1;
+            box-shadow: var(--shadow-medium);
+            animation: slideInFromLeft 1s ease-out;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(15px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .timeline-year {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-event {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: rgba(26, 26, 26, 0.8);
+        }
+
+        .timeline-item-content {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .timeline-text {
+            flex: 1;
+        }
+
+        .timeline-image {
+            flex: 0 0 200px;
+            text-align: center;
+        }
+
+        .timeline-image img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: var(--shadow-medium);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Enhanced Supervisors */
+        .supervisors {
+            padding: 6rem 0;
+            background: var(--background-color);
+        }
+
+        .supervisors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .supervisor-card {
+            background: var(--secondary-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease-out;
+            border: 1px solid var(--border-color);
+        }
+
+        .supervisor-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .supervisor-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 4px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .supervisor-card:hover .supervisor-photo {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .supervisor-name {
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .supervisor-title {
+            font-size: 1rem;
+            color: var(--accent-color);
+            opacity: 0.8;
+        }
+
+        /* Enhanced Partners Section */
+        .partners {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--highlight-color) 0%, var(--background-color) 100%);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+            align-items: center;
+        }
+
+        .partner-logo {
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease-out;
+            padding: 2rem;
+            background: var(--secondary-color);
+            border-radius: 16px;
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border-color);
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+            filter: grayscale(30%);
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        /* Enhanced Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #333333 100%);
+            color: var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(118, 75, 162, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .contact-content {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact h2 {
+            color: var(--secondary-color);
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .contact-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-title-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .header-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .section-title {
+                font-size: 2.25rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .team-tabs {
+                flex-direction: column;
+                max-width: 320px;
+            }
+
+            .team-tab {
+                padding: 0.75rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .timeline-item-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .timeline-image {
+                flex: none;
+                width: 100%;
+            }
+
+            .electrical-team-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--highlight-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6b5b95 100%);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-title-container">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\logoo.png" alt="ENIM Team Logo" class="header-logo" />
+                    <div class="header-text">
+                        <h1>ENIM Team Tunisia</h1>
+                        <p class="subtitle">Shell Eco-marathon participants</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#about">Who Are We?</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#supervisors">Supervisors</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+                <li><a href="#team">Our Team</a></li>
+                <li><a href="#partners">Partners</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="about" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Who Are We?</h2>
+                    <p>We are a team of engineering students from <strong>ENIM (National engineering school of Monastir)</strong>, guided by our passionate professors and united by a shared vision of <strong>innovation and sustainability</strong>.</p>
+                    <p>Founded in 2015, our group was established with the purpose of participating in the <strong>Shell Eco-marathon</strong>, in which we participated for the first time in France in June 2016.</p>
+                    <p>Our first mission was to design and build a vehicle for the <strong>Prototype – Electric Vehicle</strong> category. Today, we are competing in the <strong>Urban Concept – Autonomous Electric Vehicle</strong> category, where we have developed and showcased a self-driving vehicle that combines <strong>high energy efficiency</strong> with <strong>eco-friendly</strong> design.</p>
+                </div>
+                <div class="hero-image">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\TEAM.jpg" alt="ENIM Team Group Photo" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <h2 class="section-title scroll-animation">Past Achievements</h2>
+            </div>
+            <!-- Grille des réalisations -->
+            <div class="achievements-grid">
+                <div class="achievement-card scroll-animation">
+                    <div class="achievement-icon">🏆</div>
+                    <h3>1st place in vehicle prototype design</h3>
+                </div>
+                <div class="achievement-card scroll-animation">
+                    <div class="achievement-icon">🥉</div>
+                    <h3>3rd place in "Pitch the Future Europe and Africa Region"</h3>
+                </div>
+                <div class="achievement-card scroll-animation">
+                    <div class="achievement-icon">🌍</div>
+                    <h3>6/97 in Europe and Africa</h3>
+                </div>
+                <div class="achievement-card scroll-animation">
+                    <div class="achievement-icon">🌏</div>
+                    <h3>19/235 worldwide</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="supervisors" class="supervisors">
+        <div class="container">
+            <h2 class="section-title scroll-animation">Our Supervisors</h2>
+            <div class="supervisors-grid">
+                <div class="supervisor-card scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\mrwajih.jpg" alt="Mr Wajih El Hadj Youssef" class="supervisor-photo" />
+                    <div class="supervisor-name">Mr Wajih El Hadj Youssef</div>
+                    <div class="supervisor-title">Electrical Supervisor</div>
+                </div>
+                <div class="supervisor-card scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\Screenshot 2025-07-15 213559.png" alt="Mr Sami Hassine" class="supervisor-photo" />
+                    <div class="supervisor-name">Mr Sami Hassine</div>
+                    <div class="supervisor-title">Electrical Supervisor</div>
+                </div>
+                <div class="supervisor-card scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\mr zidi.jpg" alt="Mr Mondher Zidi" class="supervisor-photo" />
+                    <div class="supervisor-name">Mr Mondher Zidi</div>
+                    <div class="supervisor-title">Mechanical Supervisor</div>
+                </div>
+                <div class="supervisor-card scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\mrlotfi.jpg" alt="Mr Lotfi Boussaid" class="supervisor-photo" />
+                    <div class="supervisor-name">Mr Lotfi Boussaid</div>
+                    <div class="supervisor-title">Mechanical Supervisor</div>
+                </div>
+                <div class="supervisor-card scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\Screenshot 2025-07-15 213059.png" alt="Mr Walid Zarrad" class="supervisor-photo" />
+                    <div class="supervisor-name">Mr Walid Zarrad</div>
+                    <div class="supervisor-title">Designer Supervisor</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline" class="timeline">
+        <div class="container">
+            <h2 class="section-title scroll-animation">Our journey</h2>
+            <div class="timeline-container">
+                <div class="timeline-item scroll-animation">
+                    <div class="timeline-item-content">
+                        <div class="timeline-text">
+                            <div class="timeline-year">2016</div>
+                            <div class="timeline-event">First participation in the Shell Eco-marathon France – Prototype Electric Vehicle category.</div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="c:\Users\MSI\Desktop\TEAM3\2016.png" alt="Première participation Shell Eco-marathon 2016" />
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-animation">
+                    <div class="timeline-item-content">
+                        <div class="timeline-text">
+                            <div class="timeline-year">2017</div>
+                            <div class="timeline-event">Development of ENIMIA Second Edition with significant technical improvements.</div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="c:\Users\MSI\Desktop\TEAM3\2017.jpg" alt="ENIMIA Second Edition 2017" />
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-animation">
+                    <div class="timeline-item-content">
+                        <div class="timeline-text">
+                            <div class="timeline-year">2018</div>
+                            <div class="timeline-event">Launch of ENIMIA X Edition with innovations in energy efficiency.</div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="c:\Users\MSI\Desktop\TEAM3\2018.png" alt="ENIMIA X Edition 2018" />
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-animation">
+                    <div class="timeline-item-content">
+                        <div class="timeline-text">
+                            <div class="timeline-year">2021-2022</div>
+                            <div class="timeline-event">Development of ENIMIA Black Edition with advanced technologies.</div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="c:\Users\MSI\Desktop\TEAM3\2021_2022.jpg" alt="ENIMIA Black Edition 2021-2022" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="our-team">
+        <div class="container">
+            <h2 class="section-title scroll-animation">Meet Our Team</h2>
+            
+            <div class="team-tabs">
+                <button class="team-tab active" onclick="showTeam('electrical')">Electrical</button>
+                <button class="team-tab" onclick="showTeam('autonomous')">Autonomous</button>
+                <button class="team-tab" onclick="showTeam('mechanical')">Mechanical</button>
+            </div>
+
+            <!-- Electrical Team -->
+            <div id="electrical-team" class="team-content active">
+                <div class="electrical-team-grid">
+                    <div class="electrical-member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\IMG-20241130-WA0004.jpg" alt="Achref Mansour" class="electrical-member-photo" />
+                        <div class="electrical-member-name">Achref Mansour</div>
+                        <div class="electrical-member-role">Electrical Team</div>
+                    </div>
+                    <div class="electrical-member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\Capture d’écran_9-3-2025_215044_www.instagram.com.jpg" alt="Youssef Beltaif" class="electrical-member-photo" />
+                        <div class="electrical-member-name">Youssef Beltaif</div>
+                        <div class="electrical-member-role">Electrical Team</div>
+                    </div>
+                    <div class="electrical-member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\badiss.jpg" alt="Badis Hamdi" class="electrical-member-photo" />
+                        <div class="electrical-member-name">Badis Hamdi</div>
+                        <div class="electrical-member-role">Electrical Team</div>
+                    </div>
+                    <div class="electrical-member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\WhatsApp Image 2025-04-03 at 11.29.48.jpg" alt="Moemen Mkaddem" class="electrical-member-photo" />
+                        <div class="electrical-member-name">Moemen Mkaddem</div>
+                        <div class="electrical-member-role">Electrical Team</div>
+                    </div>
+                    <div class="electrical-member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\ALOO1.png" alt="Ranim Hawela" class="electrical-member-photo" />
+                        <div class="electrical-member-name">Ranim Hawela</div>
+                        <div class="electrical-member-role">Electrical Team</div>
+                    </div>
+                    <div class="electrical-member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\Messenger_creation_EE6CEBBF-D3B6-48A5-B42E-79E09197CB9E.jpg" alt="Ahmed Rhouma" class="electrical-member-photo" />
+                        <div class="electrical-member-name">Ahmed Rhouma</div>
+                        <div class="electrical-member-role">Electrical Team</div>
+                    </div>
+                    <div class="electrical-member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\638e17ae-945b-4ccc-a5d5-8b8ef56c5257.jpg" alt="Nesrin Dhibi" class="electrical-member-photo" />
+                        <div class="electrical-member-name">Nesrin Dhibi</div>
+                        <div class="electrical-member-role">Electrical Team</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Autonomous Team -->
+            <div id="autonomous-team" class="team-content">
+                <div class="team-grid">
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\dffb30d7-4571-4979-bd21-61e9c1e690a1.jpg" alt="Achref Mejri" class="member-photo" />
+                        <div class="member-name">Achref Mejri</div>
+                        <div class="member-role">Autonomous Team</div>
+                    </div>
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\IMG-20241130-WA0000.jpg" alt="Wafa Ammar" class="member-photo" />
+                        <div class="member-name">Wafa Ammar</div>
+                        <div class="member-role">Autonomous Team</div>
+                    </div>
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\IMG-20241130-WA0003.jpg" alt="Achoik Ben Mbarek" class="member-photo" />
+                        <div class="member-name">Achoik Ben Mbarek</div>
+                        <div class="member-role">Autonomous Team</div>
+                    </div>
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\rabeb.jpg" alt="Rabeb Bouzaida" class="member-photo" />
+                        <div class="member-name">Rabeb Bouzaida</div>
+                        <div class="member-role">Autonomous Team</div>
+                    </div>
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\fatma.jpg" alt="Fatma Mrabet" class="member-photo" />
+                        <div class="member-name">Fatma Mrabet</div>
+                        <div class="member-role">Autonomous Team</div>
+                    </div>
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\IMG_20240410_164608_757.jpg" alt="Tasnim Slama" class="member-photo" />
+                        <div class="member-name">Tasnim Slama</div>
+                        <div class="member-role">Autonomous Team</div>
+                    </div>
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\Messenger_creation_C80E3561-2E50-4128-A2F0-745FC700CACF.jpg" alt="Nermin Hmidi" class="member-photo" />
+                        <div class="member-name">Nermin Hmidi</div>
+                        <div class="member-role">Autonomous Team</div>
+                    </div>
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\banour.jpg" alt="Sara Banour" class="member-photo" />
+                        <div class="member-name">Sara Banour</div>
+                        <div class="member-role">Autonomous Team</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mechanical Team -->
+            <div id="mechanical-team" class="team-content">
+                <div class="team-grid">
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\312333063_1638420849892785_8037369223795778414_n.jpg" alt="Achour Mohamed Salem" class="member-photo" />
+                        <div class="member-name">Achour Mohamed Salem</div>
+                        <div class="member-role">Mechanical Team</div>
+                    </div>
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\abessi.jpg" alt="Mohamed Abessi" class="member-photo" />
+                        <div class="member-name">Mohamed Abessi</div>
+                        <div class="member-role">Mechanical Team</div>
+                    </div>
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\IMG-20241201-WA0004.jpg" alt="Cyrine Ghanmi" class="member-photo" />
+                        <div class="member-name">Cyrine Ghanmi</div>
+                        <div class="member-role">Mechanical Team</div>
+                    </div>
+                    <div class="member-card scroll-animation">
+                        <img src="c:\Users\MSI\Desktop\TEAM3\f87ab029-7091-46b0-bd96-b46ec66a1f31.jpg" alt="Hounaida Jounaidi" class="member-photo" />
+                        <div class="member-name">Hounaida Jounaidi</div>
+                        <div class="member-role">Mechanical Team</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" class="partners">
+        <div class="container">
+            <h2 class="section-title scroll-animation">Our partners</h2>
+            <div class="partners-grid">
+                <div class="partner-logo scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\logoactia.jpg" alt="ACTIA Logo" />
+                </div>
+                <div class="partner-logo scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\metechnics.png" alt="Metechnics Logo" />
+                </div>
+                <div class="partner-logo scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\icar.jpg" alt="ICAR Logo" />
+                </div>
+                <div class="partner-logo scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\Logo_Leoni.png" alt="Leoni Logo" />
+                </div>
+                <div class="partner-logo scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\sopal.jpg" alt="Sopal Logo" />
+                </div>
+                <div class="partner-logo scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\logo_interieurs_meubles.jpg" alt="Intérieurs Meubles Logo" />
+                </div>
+                <div class="partner-logo scroll-animation">
+                    <img src="c:\Users\MSI\Desktop\TEAM3\technopole.jpg" alt="Technopole Logo" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="scroll-animation">Contact Us</h2>
+                <div class="contact-info">
+                    <div class="contact-item scroll-animation">
+                        <h3>Team Manager</h3>
+                        <p><strong>WAFA AMAR</strong></p>
+                        <p>+216 52 771 350</p>
+                        <p>Enimteamtunisia@gmail.com</p>
+                    </div>
+                    <div class="contact-item scroll-animation">
+                        <h3>Follow Us</h3>
+                        <p>ENIM Team Tunisia - Shell Eco Marathon</p>
+                        <p>Facebook | LinkedIn | Instagram</p>
+                    </div>
+                    <div class="contact-item scroll-animation">
+                        <h3>Institution</h3>
+                        <p>National engineering school of Monastir</p>
+                        <p>Monastir, Tunisia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced scroll animation observer
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll animation elements
+        document.querySelectorAll('.scroll-animation').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced parallax effect
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Enhanced hover effects for achievement cards
+        document.querySelectorAll('.achievement-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-20px) scale(1.02)';
+                this.style.boxShadow = 'var(--shadow-heavy)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = 'var(--shadow-light)';
+            });
+        });
+
+        // Enhanced typing effect
+        function typeWriter(element, text, speed = 80) {
+            let i = 0;
+            element.innerHTML = '';
+            element.style.borderRight = '2px solid var(--primary-color)';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    setTimeout(() => {
+                        element.style.borderRight = 'none';
+                    }, 500);
+                }
+            }
+            type();
+        }
+
+        // Initialize enhanced typing effect
+        window.addEventListener('load', () => {
+            const title = document.querySelector('h1');
+            if (title) {
+                const originalText = title.textContent;
+                setTimeout(() => {
+                    typeWriter(title, originalText, 120);
+                }, 500);
+            }
+        });
+
+        // Enhanced team tabs functionality
+        function showTeam(teamType) {
+            // Hide all team contents with fade effect
+            document.querySelectorAll('.team-content').forEach(content => {
+                content.style.opacity = '0';
+                setTimeout(() => {
+                    content.classList.remove('active');
+                }, 150);
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.team-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected team content with fade effect
+            setTimeout(() => {
+                const selectedContent = document.getElementById(teamType + '-team');
+                selectedContent.classList.add('active');
+                setTimeout(() => {
+                    selectedContent.style.opacity = '1';
+                }, 50);
+            }, 150);
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Enhanced floating animation for member cards
+        document.querySelectorAll('.member-card, .electrical-member-card').forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+            
+            // Add random gentle floating animation
+            const randomDelay = Math.random() * 2;
+            const randomDuration = 3 + Math.random() * 2;
+            
+            item.style.animation += `, float ${randomDuration}s ease-in-out ${randomDelay}s infinite`;
+        });
+
+        // Add floating keyframe animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add intersection observer for progressive loading
+        const progressiveObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.filter = 'blur(0px)';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Apply progressive loading to images
+        document.querySelectorAll('img').forEach(img => {
+            img.style.filter = 'blur(5px)';
+            img.style.opacity = '0.7';
+            img.style.transition = 'filter 0.5s ease, opacity 0.5s ease';
+            progressiveObserver.observe(img);
+        });
+
+        // Add smooth reveal animation for sections
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            sectionObserver.observe(section);
+        });
+    </script>
+</body>
+</html>
